@@ -8,7 +8,7 @@ export const login = (creds, props) => (dispatch) => {
 	axiosWithAuth()
 		.post('/auth/login', creds)
 		.then((res) => {
-			console.log(res.data);
+			// console.log(res.data);
 			localStorage.setItem('token', res.data.token);
 			history.push(`/dash/${res.data.user_id}`);
 		})
@@ -22,7 +22,7 @@ export const signup = (newUser) => (dispatch) => {
 	axiosWithAuth()
 		.post('/auth/register', newUser)
 		.then((res) => {
-			console.log(res);
+			// console.log(res);
 			localStorage.setItem('token', res.data.token);
 			history.push(`/dash/${res.data.user_id}`);
 		})
@@ -32,10 +32,10 @@ export const signup = (newUser) => (dispatch) => {
 }
 export const getIssues = () => (dispatch) => {
 	axiosWithAuth()
-		.get('/issue')
+		.get('/issues')
 		.then((res) => {
-			console.log(res);
-			dispatch({ type: GET_ISSUES, payload: res });
+			// console.log(res);
+			dispatch({ type: GET_ISSUES, payload: res.data });
 	})
 		.catch((error) => {
 	dispatch({ type: SET_ERR, payload: 'NO Issues Found!' });
