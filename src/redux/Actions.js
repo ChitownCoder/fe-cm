@@ -1,30 +1,43 @@
 import axiosWithAuth from '../utils/axiosWithAuth';
-import axios from 'axios';
-import {history} from '../index'
+import { history } from '../index';
 
 export const SET_ERR = 'SET_ERR';
+export const GET_ISSUES = 'GET_ISSUES';
 
 export const login = (creds, props) => (dispatch) => {
 	axiosWithAuth()
-		.post('/login', creds)
+		.post('/auth/login', creds)
 		.then((res) => {
 			console.log(res.data);
-			localStorage.setItem('token', res.data);
-
-			history.push(`/dash/${res.data.id}`);
+			localStorage.setItem('token', res.data.token);
+			history.push(`/dash/${res.data.user_id}`);
 		})
-		
+
 		.catch((error) => {
-	dispatch({ type: SET_ERR, payload: 'Login FAILED!' });
-})}
+			dispatch({ type: SET_ERR, payload: 'Login FAILED!' });
+		});
+};
 
 export const signup = (newUser) => (dispatch) => {
-	axios
-		.post('https://co-make-9cf46.web.app/api/register', newUser)
+	axiosWithAuth()
+		.post('/auth/register', newUser)
 		.then((res) => {
-			// console.log(res);
-			history.push('/login');
+			console.log(res);
+			localStorage.setItem('token', res.data.token);
+			history.push(`/dash/${res.data.user_id}`);
 		})
-		.catch((error) => console.log('Access DENIED....', error));
+		.catch((error) => {
 	dispatch({ type: SET_ERR, payload: 'Login FAILED!' });
-};
+})
+}
+export const getIssues = () => (dispatch) => {
+	axiosWithAuth()
+		.get('/issue')
+		.then((res) => {
+			console.log(res);
+			dispatch({ type: GET_ISSUES, payload: res });
+	})
+		.catch((error) => {
+	dispatch({ type: SET_ERR, payload: 'NO Issues Found!' });
+})
+}

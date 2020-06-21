@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { SET_ERR } from './Actions';
+import { SET_ERR, GET_ISSUES } from './Actions';
 
 const initialState = {
 	issues: [],
@@ -15,6 +15,12 @@ const reducer = (state = initialState, action) => {
 				...state,
 				error: action.payload,
 			};
+
+			case GET_ISSUES:
+				return {
+					...state,
+					issues: action.payload,
+				};
 
 		default:
 			return state;

@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Router } from 'react-router';
 import { Provider } from 'react-redux';
 import store from './redux';
-import createBrowserHistory from 'history/createBrowserHistory';
+import {createBrowserHistory} from 'history';
 import './index.css';
 import App from './App';
 

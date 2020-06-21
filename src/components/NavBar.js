@@ -1,11 +1,14 @@
 import React from 'react';
+import {history} from '../index'
 import { Button, Navbar } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import logo from '../img/logo.png';
 
 const NavBar = () => {
+	
 	const logout = () => {
 		localStorage.removeItem('token');
+		history.push('/login')
 	};
 
 	return (

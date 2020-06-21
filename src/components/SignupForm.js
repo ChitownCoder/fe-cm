@@ -1,10 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { signup } from '../redux/Actions'
+import { signup } from '../redux/Actions';
 import * as yup from 'yup';
 
-
+const states = [
+	'Alabama',
+	'Alaska',
+	'Arizona',
+	'Arkansas',
+	'California',
+	'Colorado',
+	'Connecticut',
+	'Delaware',
+	'Florida',
+	'Georgia',
+	'Hawaii',
+	'Idaho',
+	'Illinois',
+	'Indiana',
+	'Iowa',
+	'Kansas',
+	'Kentucky',
+	'Louisiana',
+	'Maine',
+	'Maryland',
+	'Massachusetts',
+	'Michigan',
+	'Minnesota',
+	'Mississippi',
+	'Missouri',
+	'Montana',
+	'Nebraska',
+	'Nevada',
+	'New Hampshire',
+	'New Jersey',
+	'New Mexico',
+	'New York',
+	'North Carolina',
+	'North Dakota',
+	'Ohio',
+	'Oklahoma',
+	'Oregon',
+	'Pennsylvania',
+	'Rhode Island',
+	'South Carolina',
+	'South Dakota',
+	'Tennessee',
+	'Texas',
+	'Utah',
+	'Vermont',
+	'Virginia',
+	'Washington',
+	'West Virginia',
+	'Wisconsin',
+	'Wyoming',
+];
 
 const SignupForm = () => {
 	const dispatch = useDispatch();
@@ -13,6 +64,7 @@ const SignupForm = () => {
 		name: '',
 		email: '',
 		password: '',
+		state: '',
 		zip: '',
 	});
 	const schema = yup.object().shape({
@@ -28,20 +80,15 @@ const SignupForm = () => {
 		});
 	}, [formData, schema]);
 
-
-
-	
 	const submit = () => {
 		schema.validate(formData).then(() => {
-
-			dispatch(signup(formData))
-			setFormData({	
+			dispatch(signup(formData));
+			setFormData({
 				name: '',
-			email: '',
-			password: '',
-			zip: '',
-		})
-
+				email: '',
+				password: '',
+				zip: '',
+			});
 		});
 	};
 	const handleChanges = (event) => {
@@ -60,6 +107,7 @@ const SignupForm = () => {
 							name: '',
 							email: '',
 							password: '',
+							state: '',
 							zip: '',
 						});
 					}}
@@ -77,7 +125,20 @@ const SignupForm = () => {
 						/>
 					</FormGroup>
 
-					
+					<FormGroup>
+						<Label for="state">state</Label>
+						<Input
+							type="select"
+							name="state"
+							id="state"
+							value={formData.state}
+							onChange={handleChanges}
+						>
+							{states.map((area, index) => (
+								<option key={index}>{area}</option>
+							))}
+						</Input>
+					</FormGroup>
 
 					<FormGroup>
 						<Label for="email">Email</Label>

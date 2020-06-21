@@ -9,7 +9,7 @@ const axiosWithAuth = () => {
 			'Content-Type': 'application/json',
 			Authorization: token,
 		},
-		baseURL: 'https://co-make-9cf46.web.app/api',
+		baseURL: 'https://community-issues.herokuapp.com/api',
 	});
 };
 

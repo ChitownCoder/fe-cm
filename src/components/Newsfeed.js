@@ -1,17 +1,16 @@
-import React, {useState, useEffect} from 'react';
-//import { Card, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-//import axios from 'axios';
+import React  from 'react';
+import IssuesList from "./IssuesList"
 
 
 const Newsfeed = props => {
-   // const [feed, setFeed] = useState([]);
+   
 
 
 
 
 return (
     <>
-       <h1>You have Arrived, enjoy your potHOLE</h1> 
+       <IssuesList/>
     </>
 )
 
