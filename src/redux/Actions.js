@@ -3,6 +3,8 @@ import { history } from '../index';
 
 export const SET_ERR = 'SET_ERR';
 export const GET_ISSUES = 'GET_ISSUES';
+export const ADD_ISSUES = 'ADD_ISSUES';
+export const EDIT_ISSUES = 'EDIT_ISSUES';
 
 export const login = (creds, props) => (dispatch) => {
 	axiosWithAuth()
@@ -40,4 +42,25 @@ export const getIssues = () => (dispatch) => {
 		.catch((error) => {
 	dispatch({ type: SET_ERR, payload: 'NO Issues Found!' });
 })
+}
+
+export const addIssues =(newIssue)=> (dispatch)=>{
+	axiosWithAuth()
+	.post('/issues', newIssue)
+	.then(res =>{
+		dispatch({ type: ADD_ISSUES, payload: res.data });
+	})
+	.catch((error) => {
+		dispatch({ type: SET_ERR, payload: 'NO Issues Added!' });
+	})
+}
+export const editIssues =(editIssue, id)=> (dispatch)=>{
+	axiosWithAuth()
+	.put(`/issues/${id}`, editIssue)
+	.then(res =>{
+		dispatch({ type: EDIT_ISSUES, payload: res.data });
+	})
+	.catch((error) => {
+		dispatch({ type: SET_ERR, payload: 'NO Issues Edited!' });
+	})
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getIssues } from '../redux/Actions';
 import IssuesCard from './IssuesCard';
@@ -13,17 +13,20 @@ const IssuesList = () => {
 	// console.log(newIssue);
 	return (
 		<div>
-			{newIssue.map((info) => {
+			{newIssue.map((info, index) => {
 				return (
+<div key={index}>
 					<IssuesCard
-						key={info.id}
+						id={info.id}
 						name={info.name}
 						desc={info.desc}
 						state={info.state}
 						zip={info.zip}
 						image={info.image}
 						vote={info.vote}
+
 					/>
+</div>
 				);
 			})}
 		</div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { signup } from '../redux/Actions';
-import * as yup from 'yup';
+import { history } from '../../index';
+import {useParams} from 'react-router';
+import { useDispatch } from 'react-redux';
+import { addIssues, getIssues } from '../../redux/Actions';
 
 const states = [
 	'Alabama',
@@ -57,70 +58,63 @@ const states = [
 	'Wyoming',
 ];
 
-const SignupForm = () => {
+const Add = ({ setToggle }) => {
 	const dispatch = useDispatch();
-	const [buttonDisabled, setButtonDisabled] = useState(true);
 	const [formData, setFormData] = useState({
 		name: '',
-		email: '',
-		password: '',
+		desc: '',
+		image: '',
 		state: 'Alabama',
 		zip: '',
+		vote: 0,
 	});
-	const schema = yup.object().shape({
-		name: yup.string().required('Name is required').min(2),
-		email: yup.string().required('email is required'),
-		zip: yup.string().required('Must enter a valid zip').min(5),
-		password: yup.string().required('Please enter a password').min(6),
-	});
-
+const {id} = useParams()
 	useEffect(() => {
-		schema.isValid(formData).then((valid) => {
-			setButtonDisabled(!valid);
-		});
-	}, [formData, schema]);
+		dispatch(getIssues());
+	}, [dispatch]);
 
-	const submit = () => {
-		schema.validate(formData).then(() => {
-			dispatch(signup(formData));
-			setFormData({
-				name: '',
-				email: '',
-				password: '',
-				zip: '',
-			});
+	const submit = (e) => {
+		e.preventDefault();
+		dispatch(addIssues(formData));
+		setFormData({
+			name: '',
+			desc: '',
+			image: '',
+			state: '',
+			zip: '',
 		});
+		dispatch(getIssues()); 
+		setToggle(false);
 	};
+
 	const handleChanges = (event) => {
 		event.preventDefault();
 		setFormData({ ...formData, [event.target.name]: event.target.value });
 	};
 
 	return (
-		<>
-			<div className="sform">
-				<Form
-					onSubmit={(event) => {
-						event.preventDefault();
-						submit();
-						setFormData({
-							name: '',
-							email: '',
-							password: '',
-							state: '',
-							zip: '',
-						});
-					}}
-					style={{ margin: '5%' }}
-				>
-					<h2>Please sign up for access</h2>
+		<div>
+			<div className="iform">
+				<Form onSubmit={submit} style={{ margin: '5%' }}>
+					<h2>Add an Issue</h2>
 					<FormGroup>
 						<Label for="name">Name</Label>
 						<Input
+							required
+							type="name"
 							name="name"
-							id="name"
-							placeholder="name"
+							placeholder="add a title..."
 							value={formData.name}
+							onChange={handleChanges}
+						/>
+					</FormGroup>
+					<FormGroup>
+						<Label for="desc">Description</Label>
+						<Input
+							required
+							name="desc"
+							placeholder="add more info..."
+							value={formData.desc}
 							onChange={handleChanges}
 						/>
 					</FormGroup>
@@ -141,16 +135,6 @@ const SignupForm = () => {
 					</FormGroup>
 
 					<FormGroup>
-						<Label for="email">Email</Label>
-						<Input
-							type="email"
-							name="email"
-							placeholder="email"
-							value={formData.email}
-							onChange={handleChanges}
-						/>
-					</FormGroup>
-					<FormGroup>
 						<Label for="zip">Zip Code</Label>
 						<Input
 							name="zip"
@@ -159,22 +143,22 @@ const SignupForm = () => {
 							onChange={handleChanges}
 						/>
 					</FormGroup>
+
 					<FormGroup>
-						<Label for="password">Password</Label>
+						<Label for="image">Image</Label>
 						<Input
-							name="password"
-							placeholder="password"
-							value={formData.password}
+							required
+							name="image"
+							placeholder="add more info..."
+							value={formData.image}
 							onChange={handleChanges}
 						/>
 					</FormGroup>
-					<Button className="btn" disabled={buttonDisabled}>
-						Sign Up!
-					</Button>
+					<Button className="btn">Add</Button>
 				</Form>
 			</div>
-		</>
+		</div>
 	);
 };
 
-export default SignupForm;
+export default Add;
