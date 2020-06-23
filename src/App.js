@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 import Routes from './utils/Routes';
-import Footer from './components/Footer';
 
 function App() {
 
@@ -13,7 +12,7 @@ function App() {
 				<Routes />
 			</div>
 
-			<Footer />
+			
 		</section>
 	);
 }

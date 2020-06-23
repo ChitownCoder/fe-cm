@@ -5,6 +5,7 @@ export const SET_ERR = 'SET_ERR';
 export const GET_ISSUES = 'GET_ISSUES';
 export const ADD_ISSUES = 'ADD_ISSUES';
 export const EDIT_ISSUES = 'EDIT_ISSUES';
+export const GET_USERS = 'GET_USERS'
 
 export const login = (creds, props) => (dispatch) => {
 	axiosWithAuth()
@@ -32,12 +33,23 @@ export const signup = (newUser) => (dispatch) => {
 	dispatch({ type: SET_ERR, payload: 'Login FAILED!' });
 })
 }
-export const getIssues = () => (dispatch) => {
+export const getIssues = (state) => (dispatch) => {
 	axiosWithAuth()
 		.get('/issues')
 		.then((res) => {
 			// console.log(res);
 			dispatch({ type: GET_ISSUES, payload: res.data });
+	})
+		.catch((error) => {
+	dispatch({ type: SET_ERR, payload: 'NO Issues Found!' });
+})
+}
+export const getUsers = (id) => (dispatch) => {
+	axiosWithAuth()
+		.get(`/user/${id}`)
+		.then((res) => {
+			// console.log(res);
+			dispatch({ type: GET_USERS, payload: res.data });
 	})
 		.catch((error) => {
 	dispatch({ type: SET_ERR, payload: 'NO Issues Found!' });

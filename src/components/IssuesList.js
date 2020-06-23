@@ -1,34 +1,48 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getIssues } from '../redux/Actions';
+import { getIssues, getUsers } from '../redux/Actions';
+import { useParams } from 'react-router';
 import IssuesCard from './IssuesCard';
 
 const IssuesList = () => {
 	const newIssue = useSelector((state) => state.issues);
+	const user = useSelector((state) => state.users);
 	const dispatch = useDispatch();
+	const [stateIssues, setStateIssues] = useState([]);
+const {id} = useParams()
+
+
 
 	useEffect(() => {
 		dispatch(getIssues());
-	}, [dispatch]);
-	// console.log(newIssue);
+		dispatch(getUsers(id));
+		const myStateArray = newIssue.filter((issue) => issue.state === user.state);
+		setStateIssues(myStateArray);
+
+		// eslint-disable-next-line
+	}, [user.state, dispatch]);
+
+	console.log(stateIssues);
 	return (
 		<div>
-			{newIssue.map((info, index) => {
+			{stateIssues.map((info, index) => {
 				return (
-<div key={index}>
-					<IssuesCard
-						id={info.id}
-						name={info.name}
-						desc={info.desc}
-						state={info.state}
-						zip={info.zip}
-						image={info.image}
-						vote={info.vote}
-
-					/>
-</div>
+					<div key={index}>
+						<IssuesCard
+							id={info.id}
+							name={info.name}
+							desc={info.desc}
+							state={info.state}
+							zip={info.zip}
+							image={info.image}
+							vote={info.vote}
+						/>
+					</div>
 				);
 			})}
+
+			
+			
 		</div>
 	);
 };

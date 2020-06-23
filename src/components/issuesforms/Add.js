@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { history } from '../../index';
-import {useParams} from 'react-router';
 import { useDispatch } from 'react-redux';
 import { addIssues, getIssues } from '../../redux/Actions';
 
@@ -68,7 +66,6 @@ const Add = ({ setToggle }) => {
 		zip: '',
 		vote: 0,
 	});
-const {id} = useParams()
 	useEffect(() => {
 		dispatch(getIssues());
 	}, [dispatch]);
