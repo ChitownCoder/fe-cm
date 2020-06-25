@@ -13,7 +13,7 @@ const states = [
 	'Colorado',
 	'Connecticut',
 	'Delaware',
-	'Florida',
+	'Florida', 
 	'Georgia',
 	'Hawaii',
 	'Idaho',
@@ -71,7 +71,7 @@ const SignupForm = () => {
 		name: yup.string().required('Name is required').min(2),
 		email: yup.string().required('email is required'),
 		zip: yup.string().required('Must enter a valid zip').min(5),
-		password: yup.string().required('Please enter a password').min(6),
+		password: yup.string().required('Please enter a password').min(4),
 	});
 
 	useEffect(() => {

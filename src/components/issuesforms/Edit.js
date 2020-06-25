@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useDispatch } from 'react-redux';
-import { editIssues,  getIssues  } from '../../redux/Actions';
+import { editIssues } from '../../redux/Actions';
 
 const states = [
 	'Alabama',
@@ -56,10 +56,9 @@ const states = [
 	'Wyoming',
 ];
 
-const Edit = ({editIssue}) => {
-	const dispatch = useDispatch()
+const Edit = ({ editIssue, setToggle }) => {
+	const dispatch = useDispatch();
 	const [formData, setFormData] = useState({
-		
 		name: editIssue.name,
 		desc: editIssue.desc,
 		image: editIssue.image,
@@ -77,7 +76,11 @@ const Edit = ({editIssue}) => {
 			state: '',
 			zip: '',
 		});
-		 dispatch(getIssues()) 
+		setTimeout(() => {
+			window.location.reload();
+		}, 3000);
+
+		setToggle(false);
 	};
 
 	const handleChanges = (event) => {
@@ -89,6 +92,7 @@ const Edit = ({editIssue}) => {
 		<div className="iform">
 			<Form onSubmit={submit} style={{ margin: '5%' }}>
 				<h2>Edit Issue</h2>
+
 				<FormGroup>
 					<Label for="name">Name</Label>
 					<Input
@@ -148,6 +152,9 @@ const Edit = ({editIssue}) => {
 				</FormGroup>
 				<Button className="btn">Add</Button>
 			</Form>
+			<Button style={{ height: '45px'}} onClick={() => setToggle(false)}>
+				X
+			</Button>
 		</div>
 	);
 };

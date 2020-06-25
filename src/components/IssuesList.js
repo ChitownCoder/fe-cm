@@ -20,7 +20,7 @@ const {id} = useParams()
 		setStateIssues(myStateArray);
 
 		// eslint-disable-next-line
-	}, [user.state, dispatch]);
+	}, [dispatch, user.state]);
 
 	console.log(stateIssues);
 	return (
@@ -35,8 +35,7 @@ const {id} = useParams()
 							state={info.state}
 							zip={info.zip}
 							image={info.image}
-							vote={info.vote}
-						/>
+							/>
 					</div>
 				);
 			})}

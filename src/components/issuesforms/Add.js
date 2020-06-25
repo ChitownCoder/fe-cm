@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useDispatch } from 'react-redux';
-import { addIssues, getIssues } from '../../redux/Actions';
+import { addIssues } from '../../redux/Actions';
 
 const states = [
 	'Alabama',
@@ -57,6 +57,8 @@ const states = [
 ];
 
 const Add = ({ setToggle }) => {
+	const id = localStorage.getItem('user_id');
+	console.log(id);
 	const dispatch = useDispatch();
 	const [formData, setFormData] = useState({
 		name: '',
@@ -64,11 +66,10 @@ const Add = ({ setToggle }) => {
 		image: '',
 		state: 'Alabama',
 		zip: '',
-		vote: 0,
 	});
-	useEffect(() => {
-		dispatch(getIssues());
-	}, [dispatch]);
+	// useEffect(() => {
+	// 	dispatch(getIssues());
+	// }, [dispatch]);
 
 	const submit = (e) => {
 		e.preventDefault();
@@ -80,8 +81,11 @@ const Add = ({ setToggle }) => {
 			state: '',
 			zip: '',
 		});
-		dispatch(getIssues()); 
+		// dispatch(getIssues());
 		setToggle(false);
+		setTimeout(() => {
+			window.location.reload();
+		}, 3000);
 	};
 
 	const handleChanges = (event) => {
@@ -153,6 +157,10 @@ const Add = ({ setToggle }) => {
 					</FormGroup>
 					<Button className="btn">Add</Button>
 				</Form>
+
+				<Button style={{ height: '45px' }} onClick={() => setToggle(false)}>
+					X
+				</Button>
 			</div>
 		</div>
 	);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/Actions'
+import { login } from '../redux/Actions';
 import * as yup from 'yup';
 
 const LoginForm = (props) => {
@@ -14,7 +14,7 @@ const LoginForm = (props) => {
 	const schema = yup.object().shape({
 		email: yup.string().required('email is required'),
 
-		password: yup.string().required('Please enter a password').min(6),
+		password: yup.string().required('Please enter a password').min(4),
 	});
 
 	useEffect(() => {
@@ -23,16 +23,15 @@ const LoginForm = (props) => {
 		});
 	}, [formData, schema]);
 
-
 	const submit = () => {
 		schema.validate(formData).then(() => {
-			dispatch(login(formData))
+			dispatch(login(formData));
 		});
 	};
 	const handleChanges = (event) => {
 		event.preventDefault();
 		setFormData({ ...formData, [event.target.name]: event.target.value });
-	}
+	};
 	return (
 		<>
 			<div className="iform">

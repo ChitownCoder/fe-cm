@@ -1,45 +1,47 @@
 import React, { useState } from 'react';
 import Edit from './issuesforms/Edit';
 import axiosWithAuth from '../utils/axiosWithAuth';
+// import {Col, Card} from 'reactstrap';
 import { useDispatch } from 'react-redux';
-import {getIssues} from '../redux/Actions'
+import { getIssues } from '../redux/Actions';
 
-
-
-const IssuesCard = ({ name, desc, state, zip, image, vote, id }) => {
+const IssuesCard = ({ name, desc, state, zip, image, id }) => {
 	//* STATE ARRAY BELOW *//
 	const [editIssues, setEditIssues] = useState({}); //* empty object *//
-  const [toggle, setToggle] = useState(false);
-  const dispatch = useDispatch()
-// console.log(id)
+	const [toggle, setToggle] = useState(false);
+	const dispatch = useDispatch();
+	// console.log(id)
 
-  const open = () => {
-    setToggle(!false);
-  }
+	
 
+	const open = () => {
+		setToggle(!false);
+	};
+
+	
 	const edit = () => {
 		axiosWithAuth()
 			.get(`/issues/${id}`)
 
 			.then((res) => {
 				console.log(res.data);
-        setEditIssues(res.data);
-        open()
-        
+				setEditIssues(res.data);
+				open();
 			})
 
 			.catch((err) => console.log('418 I am a TeaPot!!!'));
 	};
 
 	const removeIssue = () => {
-    axiosWithAuth()
-    .delete(`/issues/${id}`)
-    .then((res) => {
-      dispatch(getIssues())
-    })
-    .catch((err) => console.log('418 I am a TeaPot!!!'));
-  };
+		axiosWithAuth()
+			.delete(`/issues/${id}`)
+			.then((res) => {
+				dispatch(getIssues());
+			})
+			.catch((err) => console.log('418 I am a TeaPot!!!'));
+	};
 
+	
 	return (
 		<div>
 			<div>
@@ -51,7 +53,7 @@ const IssuesCard = ({ name, desc, state, zip, image, vote, id }) => {
 				<p>
 					<li>{state}</li>
 					<li>{zip}</li>
-					{vote}
+					
 				</p>
 			</section>
 
@@ -60,13 +62,11 @@ const IssuesCard = ({ name, desc, state, zip, image, vote, id }) => {
 				<button onClick={removeIssue}>Delete</button>
 			</footer>
 
-{toggle === !false? 
- 
-
-			<section>
-				<Edit editIssue={editIssues} />
-      </section>:null
-      }
+			{toggle === !false ? (
+				<section>
+					<Edit editIssue={editIssues} setToggle={setToggle}/>
+				</section>
+			) : null}
 		</div>
 	);
 };
