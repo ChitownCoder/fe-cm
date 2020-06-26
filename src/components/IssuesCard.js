@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Edit from './issuesforms/Edit';
 import axiosWithAuth from '../utils/axiosWithAuth';
-// import {Col, Card} from 'reactstrap';
+import { Card } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
 import { getIssues } from '../redux/Actions';
 
@@ -11,7 +11,18 @@ const IssuesCard = ({ name, desc, state, zip, image, id }) => {
 	const [toggle, setToggle] = useState(false);
 	const dispatch = useDispatch();
 	// console.log(id)
+	
 
+	const Card = () => (
+		<Card.Group itemsPerRow={4}>
+			<Card color='blue' image={image} />
+			
+		</Card.Group>
+	)
+
+
+	
+	
 	
 
 	const open = () => {
@@ -43,8 +54,8 @@ const IssuesCard = ({ name, desc, state, zip, image, id }) => {
 
 	
 	return (
-		<div>
-			<div>
+		<div className="Card">{/*ADD YOUR CARD HERE FOR STYLING */}
+			<div className="pic">
 				<img src={image} alt="community problem" />
 			</div>
 			<section>
