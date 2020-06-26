@@ -11,25 +11,17 @@ const IssuesCard = ({ name, desc, state, zip, image, id }) => {
 	const [toggle, setToggle] = useState(false);
 	const dispatch = useDispatch();
 	// console.log(id)
-	
 
 	const Card = () => (
 		<Card.Group itemsPerRow={4}>
-			<Card color='blue' image={image} />
-			
+			<Card color="blue" image={image} />
 		</Card.Group>
-	)
-
-
-	
-	
-	
+	);
 
 	const open = () => {
 		setToggle(!false);
 	};
 
-	
 	const edit = () => {
 		axiosWithAuth()
 			.get(`/issues/${id}`)
@@ -52,9 +44,9 @@ const IssuesCard = ({ name, desc, state, zip, image, id }) => {
 			.catch((err) => console.log('418 I am a TeaPot!!!'));
 	};
 
-	
 	return (
-		<div className="Card">{/*ADD YOUR CARD HERE FOR STYLING */}
+		<div className="Card">
+			{/*ADD YOUR CARD HERE FOR STYLING */}
 			<div className="pic">
 				<img src={image} alt="community problem" />
 			</div>
@@ -64,7 +56,6 @@ const IssuesCard = ({ name, desc, state, zip, image, id }) => {
 				<p>
 					<li>{state}</li>
 					<li>{zip}</li>
-					
 				</p>
 			</section>
 
@@ -75,7 +66,7 @@ const IssuesCard = ({ name, desc, state, zip, image, id }) => {
 
 			{toggle === !false ? (
 				<section>
-					<Edit editIssue={editIssues} setToggle={setToggle}/>
+					<Edit editIssue={editIssues} setToggle={setToggle} />
 				</section>
 			) : null}
 		</div>
