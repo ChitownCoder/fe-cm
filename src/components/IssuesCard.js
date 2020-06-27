@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Edit from './issuesforms/Edit';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useDispatch } from 'react-redux';
-import { getIssues , getMyState} from '../redux/Actions';
+import { getIssues, getMyState } from '../redux/Actions';
 
 const IssuesCard = ({ name, desc, state, zip, image, id, stateIssues }) => {
-	const user_id =localStorage.getItem('user_id')
+	const user_id = localStorage.getItem('user_id');
 	//* STATE ARRAY BELOW *//
 	const [editIssues, setEditIssues] = useState({}); //* empty object *//
 	const [toggle, setToggle] = useState(false);

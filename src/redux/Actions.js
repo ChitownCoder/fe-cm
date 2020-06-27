@@ -81,34 +81,23 @@ export const editIssues = (editIssue, id) => (dispatch) => {
 };
 
 export const getMyState = (id) => async (dispatch) => {
-
-let myStateArray
-	try{
+	let myStateArray;
 	try {
-		var issues = await axiosWithAuth().get(`/issues`);
-		var users = await axiosWithAuth().get(`/user/${id}`);
-		console.log("Issues", issues);
-		console.log("Users", users);
+		try {
+			var issues = await axiosWithAuth().get(`/issues`);
+			var users = await axiosWithAuth().get(`/user/${id}`);
+			console.log('Issues', issues);
+			console.log('Users', users);
 
-		myStateArray = issues.data.filter((issue) => issue.state === users.data.state)
-			
-			
-		
-
-	} catch (error) {
-		dispatch({ type: SET_ERR, payload: 'NO Issues Edited!' })
-	}finally{
-		
-
-		return (
-
-			dispatch({ type: GET_MY_STATE, payload: [...myStateArray]
-		})
+			myStateArray = issues.data.filter(
+				(issue) => issue.state === users.data.state
 			);
+		} catch (error) {
+			dispatch({ type: SET_ERR, payload: 'NO Issues Edited!' });
+		} finally {
+			return dispatch({ type: GET_MY_STATE, payload: [...myStateArray] });
+		}
+	} catch (error) {
+		dispatch({ type: SET_ERR, payload: 'NO Issues Edited!' });
 	}
-}
-
- catch (error) {
-	dispatch({ type: SET_ERR, payload: 'NO Issues Edited!' });
-}
 };

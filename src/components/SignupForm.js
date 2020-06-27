@@ -13,7 +13,7 @@ const states = [
 	'Colorado',
 	'Connecticut',
 	'Delaware',
-	'Florida', 
+	'Florida',
 	'Georgia',
 	'Hawaii',
 	'Idaho',

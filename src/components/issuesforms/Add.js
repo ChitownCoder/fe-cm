@@ -81,11 +81,6 @@ const Add = ({ setToggle }) => {
 		});
 		dispatch(getMyState(id))
 		setToggle(false);
-
-
-		//setTimeout(() => {
-		//	window.location.reload();
-	//	}, 500);
 	};
 
 	const handleChanges = (event) => {
