@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Edit from './issuesforms/Edit';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { Card } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
-import { getIssues } from '../redux/Actions';
+import { getIssues , getMyState} from '../redux/Actions';
 
-const IssuesCard = ({ name, desc, state, zip, image, id }) => {
+const IssuesCard = ({ name, desc, state, zip, image, id, stateIssues }) => {
+	const user_id =localStorage.getItem('user_id')
 	//* STATE ARRAY BELOW *//
 	const [editIssues, setEditIssues] = useState({}); //* empty object *//
 	const [toggle, setToggle] = useState(false);
@@ -39,7 +39,7 @@ const IssuesCard = ({ name, desc, state, zip, image, id }) => {
 		axiosWithAuth()
 			.delete(`/issues/${id}`)
 			.then((res) => {
-				dispatch(getIssues());
+				dispatch(getMyState(user_id));
 			})
 			.catch((err) => console.log('418 I am a TeaPot!!!'));
 	};
@@ -48,7 +48,7 @@ const IssuesCard = ({ name, desc, state, zip, image, id }) => {
 		<div className="Card">
 			{/*ADD YOUR CARD HERE FOR STYLING */}
 			<div className="pic">
-				<img src={image} alt="community problem" />
+				<img style={{ width: '100%' }} src={image} alt="community problem" />
 			</div>
 			<section>
 				<h1>{name}</h1>

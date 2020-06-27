@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useDispatch } from 'react-redux';
-import { editIssues } from '../../redux/Actions';
+import { editIssues, getMyState } from '../../redux/Actions';
+import {useParams} from 'react-router-dom'
 
 const states = [
 	'Alabama',
@@ -65,7 +66,7 @@ const Edit = ({ editIssue, setToggle }) => {
 		state: editIssue.state,
 		zip: editIssue.zip,
 	});
-
+const {id} = useParams()
 	const submit = (e) => {
 		e.preventDefault();
 		dispatch(editIssues(formData, editIssue.id));
@@ -76,10 +77,10 @@ const Edit = ({ editIssue, setToggle }) => {
 			state: '',
 			zip: '',
 		});
-		setTimeout(() => {
-			window.location.reload();
-		}, 3000);
-
+		//setTimeout(() => {
+		//	window.location.reload();
+		//}, 500);
+ dispatch(getMyState(id))
 		setToggle(false);
 	};
 
@@ -150,7 +151,7 @@ const Edit = ({ editIssue, setToggle }) => {
 						onChange={handleChanges}
 					/>
 				</FormGroup>
-				<Button className="btn">Add</Button>
+				<Button className="btn">Edit</Button>
 			</Form>
 			<Button style={{ height: '45px'}} onClick={() => setToggle(false)}>
 				X

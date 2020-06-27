@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useDispatch } from 'react-redux';
-import { addIssues } from '../../redux/Actions';
+import { addIssues , getMyState} from '../../redux/Actions';
 
 const states = [
 	'Alabama',
@@ -67,9 +67,7 @@ const Add = ({ setToggle }) => {
 		state: 'Alabama',
 		zip: '',
 	});
-	// useEffect(() => {
-	// 	dispatch(getIssues());
-	// }, [dispatch]);
+
 
 	const submit = (e) => {
 		e.preventDefault();
@@ -81,11 +79,13 @@ const Add = ({ setToggle }) => {
 			state: '',
 			zip: '',
 		});
-		// dispatch(getIssues());
+		dispatch(getMyState(id))
 		setToggle(false);
-		setTimeout(() => {
-			window.location.reload();
-		}, 3000);
+
+
+		//setTimeout(() => {
+		//	window.location.reload();
+	//	}, 500);
 	};
 
 	const handleChanges = (event) => {
