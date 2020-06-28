@@ -27,7 +27,7 @@ export const signup = (newUser) => (dispatch) => {
 	axiosWithAuth()
 		.post('/auth/register', newUser)
 		.then((res) => {
-			// console.log(res);
+			console.log(res.data);
 			localStorage.setItem('token', res.data.token);
 			localStorage.setItem('user_id', res.data.user_id);
 			history.push(`/dash/${res.data.user_id}`);
