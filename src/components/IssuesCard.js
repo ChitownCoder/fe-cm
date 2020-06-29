@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Edit from './issuesforms/Edit';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useDispatch } from 'react-redux';
-import { getIssues, getMyState } from '../redux/Actions';
+import { getMyState } from '../redux/Actions';
 
 const IssuesCard = ({ name, desc, state, zip, image, id, stateIssues }) => {
 	const user_id = localStorage.getItem('user_id');
@@ -12,11 +12,6 @@ const IssuesCard = ({ name, desc, state, zip, image, id, stateIssues }) => {
 	const dispatch = useDispatch();
 	// console.log(id)
 
-	const Card = () => (
-		<Card.Group itemsPerRow={4}>
-			<Card color="blue" image={image} />
-		</Card.Group>
-	);
 
 	const open = () => {
 		setToggle(!false);
@@ -45,6 +40,7 @@ const IssuesCard = ({ name, desc, state, zip, image, id, stateIssues }) => {
 	};
 
 	return (
+
 		<div className="Card">
 			{/*ADD YOUR CARD HERE FOR STYLING */}
 			<div className="pic">
@@ -70,6 +66,8 @@ const IssuesCard = ({ name, desc, state, zip, image, id, stateIssues }) => {
 				</section>
 			) : null}
 		</div>
+
+		
 	);
 };
 
