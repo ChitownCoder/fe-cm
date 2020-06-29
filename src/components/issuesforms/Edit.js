@@ -87,7 +87,7 @@ const Edit = ({ editIssue, setToggle }) => {
 	};
 
 	return (
-		<div className="iform">
+		<div className="eform">
 			<Form onSubmit={submit} style={{ margin: '5%' }}>
 				<h2>Edit Issue</h2>
 
