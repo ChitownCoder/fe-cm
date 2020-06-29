@@ -72,7 +72,7 @@
 	width: 50%;
 	margin-left: 30%;
 	margin-top: 2%;
-	padding:2% ;
+	padding: 2%;
 	background-image: linear-gradient(
 		to right,
 		rgba(106, 17, 203, 0.5) 0%,
@@ -84,7 +84,7 @@
 	max-width: 100%;
 }
 
-.video {   
+.video {
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -92,120 +92,116 @@
 	left: 0;
 	overflow: hidden;
 	z-index: -100;
+}
+
+/* MEDIA QUERY STARTS HERE */
+
+@media only screen and (max-width: 800px) {
+	body {
+		background-color: rgb(230, 173, 176);
+	}
+	.navbar {
+		width: 100%;
+	}
+	.sform {
+		border: 10px double #6a11cb;
+		border-top-left-radius: 25%;
+		border-bottom-right-radius: 25%;
+		width: 50%;
+		margin: 10% auto;
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		color: white;
+		font-size: 20px;
+	}
+	.navbar {
+		width: 100%;
+		min-height: 10vh;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	/* body {
+			background-color: rgb(230, 173, 176);
+		} */
+
+	.iform {
+		background-image: linear-gradient(
+			to right,
+			rgba(106, 17, 203, 0.5) 0%,
+			rgba(37, 117, 252, 0.5) 100%
+		);
+		border: 10px double #6a11cb;
+		border-top-left-radius: 25%;
+		border-bottom-right-radius: 25%;
+		width: 50%;
+		margin: 10% auto;
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		color: white;
+		font-size: 20px;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	/* body {
+				background-color: rgb(71, 3, 7);
+			} */
+			.navbar {
+				width: 100%;
+			}
+		
+	.sform {
+		background-image: linear-gradient(
+			to right,
+			rgba(106, 17, 203, 0.5) 0%,
+			rgba(37, 117, 252, 0.5) 100%
+		);
+		border: 10px double #6a11cb;
+		border-top-left-radius: 25%;
+		border-bottom-right-radius: 25%;
+		width: 100%;
+		margin-left: 12%;
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		color: white;
+		font-size: 20px;
+	}
+	.navbar {
+		width: 100%;
+		min-height: 10vh;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	/* body {
+				background-color: rgb(71, 3, 7);
+			} */
+
+	.iform {
+		background-image: linear-gradient(
+			to right,
+			rgba(106, 17, 203, 0.5) 0%,
+			rgba(37, 117, 252, 0.5) 100%
+		);
+
+		border: 10px double #6a11cb;
+		border-top-left-radius: 25%;
+		border-bottom-right-radius: 25%;
+		width: 100%;
+		margin-left: 12%;
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		color: white;
+		font-size: 20px;
 	}
 
-	
-
-	/* MEDIA QUERY STARTS HERE */
-
-	@media only screen and (max-width: 800px) {
-		/* body {
-			background-color: rgb(230, 173, 176);
-		} */
-
-		.sform {
-			background-image: linear-gradient(
-				to right,
-				rgba(106, 17, 203, 0.5) 0%,
-				rgba(37, 117, 252, 0.5) 100%
-			);
-			border: 10px double #6a11cb;
-			border-top-left-radius: 25%;
-			border-bottom-right-radius: 25%;
-			width: 50%;
-			margin: 10% auto;
-			display: flex;
-			align-content: center;
-			justify-content: center;
-			color: white;
-			font-size: 20px;
-		}
-		}
-
-	@media only screen and (max-width: 800px) {
-		/* body {
-			background-color: rgb(230, 173, 176);
-		} */
-
-		.iform {
-			background-image: linear-gradient(
-				to right,
-				rgba(106, 17, 203, 0.5) 0%,
-				rgba(37, 117, 252, 0.5) 100%
-			);
-			border: 10px double #6a11cb;
-			border-top-left-radius: 25%;
-			border-bottom-right-radius: 25%;
-			width: 50%;
-			margin: 10% auto;
-			display: flex;
-			align-content: center;
-			justify-content: center;
-			color: white;
-			font-size: 20px;
-		}
-		}
-
-		
-	
-		@media only screen and (max-width: 500px) {
-			/* body {
-				background-color: rgb(71, 3, 7);
-			} */
-	
-			.sform {
-				background-image: linear-gradient(
-					to right,
-					rgba(106, 17, 203, 0.5) 0%,
-					rgba(37, 117, 252, 0.5) 100%
-				);
-				border: 10px double #6a11cb;
-				border-top-left-radius: 25%;
-				border-bottom-right-radius: 25%;
-				width: 100%;
-				margin-left: 12%;
-				display: flex;
-				align-content: center;
-				justify-content: center;
-				color: white;
-				font-size: 20px;
-			}
-				.navbar {
-					width:100%;
-					min-height: 10vh;
-				}
-			}
-			
-	
-		@media only screen and (max-width: 500px) {
-			/* body {
-				background-color: rgb(71, 3, 7);
-			} */
-	
-			.iform {
-				background-image: linear-gradient(
-					to right,
-					rgba(106, 17, 203, 0.5) 0%,
-					rgba(37, 117, 252, 0.5) 100%
-				);
-				
-				border: 10px double #6a11cb;
-				border-top-left-radius: 25%;
-				border-bottom-right-radius: 25%;
-				width: 100%;
-				margin-left: 12%;
-				display: flex;
-				align-content: center;
-				justify-content: center;
-				color: white;
-				font-size: 20px;
-				
-			}
-			
-				.navbar {
-					width:100%;
-					min-height: 10vh;
-				}
-			}
-			
-	
+	.navbar {
+		width: 100%;
+		min-height: 10vh;
+	}
+}
