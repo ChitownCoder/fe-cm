@@ -13,7 +13,7 @@ function App() {
 			</div>
 			<div className="video">
 				<div className="video">
-					<video title="storming" width="125%" width="150%" autoPlay muted loop>
+					<video title="storming" width="125%" height="150%" autoPlay muted loop>
 						<source src={video} type="video/mp4" />
 					</video>
 				</div>

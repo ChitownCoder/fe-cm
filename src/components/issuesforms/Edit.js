@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { editIssues, getMyState } from '../../redux/Actions';
 import { useParams } from 'react-router-dom';
 
+
 const states = [
 	'Alabama',
 	'Alaska',

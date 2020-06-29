@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useDispatch } from 'react-redux';
-import { addIssues , getMyState} from '../../redux/Actions';
+import { addIssues, getMyState } from '../../redux/Actions';
+import { useParams } from 'react-router-dom';
+import { history } from '../../index.js'
 
 const states = [
 	'Alabama',
@@ -57,7 +59,9 @@ const states = [
 ];
 
 const Add = ({ setToggle }) => {
-	const id = localStorage.getItem('user_id');
+	// const id = localStorage.getItem('user_id');
+
+	const { id } = useParams();
 	console.log(id);
 	const dispatch = useDispatch();
 	const [formData, setFormData] = useState({
@@ -67,7 +71,6 @@ const Add = ({ setToggle }) => {
 		state: 'Alabama',
 		zip: '',
 	});
-
 
 	const submit = (e) => {
 		e.preventDefault();
@@ -79,8 +82,10 @@ const Add = ({ setToggle }) => {
 			state: '',
 			zip: '',
 		});
-		dispatch(getMyState(id))
+		dispatch(getMyState(id));
 		setToggle(false);
+		history.push(`/dash/${id}`)
+
 	};
 
 	const handleChanges = (event) => {

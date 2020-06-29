@@ -17,9 +17,11 @@ const UserDash = () => {
 				<div>
 					<Add setToggle={setToggle} />
 				</div>
-			) : null}
+			) : <div>
+				<Newsfeed />
+				</div>}
 
-			<Newsfeed />
+			
 		</div>
 	);
 };
